@@ -5,7 +5,7 @@ import Image from "next/image";
 
 function Footer() {
   return (
-    <footer className="lg:fixed pt-8 pb-6 mt-[9rem] bottom-0">
+    <footer className="pt-8 pb-6 mt-[9rem] bottom-0">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4 flex flex-col items-center justify-center">
