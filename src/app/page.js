@@ -32,6 +32,7 @@ export default function Home() {
   const [api, setApi] = useState(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const categories = ["movie", "music", "product"];
 
   const [docs, loading, error] = useCollection(
@@ -110,7 +111,7 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full h-full flex flex-col items-center p-0 lg:p-4">
+    <main className="w-full h-full flex flex-col items-center p-0 lg:p-4 overflow-hidden">
       <header className="w-full flex justify-start">
         <YearPicker onYearChange={handleYearChange} />
         <span className="flex items-center text-slate-500 ml-8 font-semibold lg:hidden">

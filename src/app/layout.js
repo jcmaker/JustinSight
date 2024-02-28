@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${inter.className} w-screen h-auto overflow-hidden overflow-y-scroll flex flex-col justify-between items-center`}
+          className={`${inter.className} w-screen h-auto overflow-x-hidden overflow-hidden overflow-y-scroll flex flex-col justify-between items-center`}
         >
           <ThemeProvider
             attribute="class"
