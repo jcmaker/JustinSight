@@ -21,7 +21,7 @@ function Header() {
         <span className="baloo-font text-lg text-blue-600">JustinSight</span>
       </Link>
 
-      <div className="px-5 flex space-x-2 items-center">
+      <div className="px-2 flex space-x-2 items-center">
         <ThemeToggle />
         <UserButton afterSignOutUrl="/" />
       </div>

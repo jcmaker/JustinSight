@@ -69,8 +69,8 @@ function Page() {
   };
 
   return (
-    <div className="flex flex-col h-full p-4">
-      <header className="flex items-center">
+    <div className="flex flex-col h-auto w-full p-4 overflow-x-hidden">
+      <header className="w-full flex items-center justify-center ">
         <YearPicker onYearChange={handleYearChange} />
         <CategoryPicker onCategoryChange={handleCategoryChange} />
       </header>
