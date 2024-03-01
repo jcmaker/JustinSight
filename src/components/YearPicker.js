@@ -12,7 +12,9 @@ import { CalendarIcon, CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 function YearPicker({ onYearChange }) {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState(
+    new Date().getFullYear() - 1
+  );
   const [open, setOpen] = useState(false);
 
   const currentYear = new Date().getFullYear();

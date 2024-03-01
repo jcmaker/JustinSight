@@ -24,7 +24,9 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronsRight } from "lucide-react";
 
 export default function Home() {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState(
+    new Date().getFullYear() - 1
+  );
   const [selectedCategory, setSelectedCategory] = useState("movie");
   const [categoryData, setCategoryData] = useState([]);
   const [loadingData, setLoadingData] = useState(true); // Add a loading state
