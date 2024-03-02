@@ -29,11 +29,8 @@ export default function Home() {
   );
   const [selectedCategory, setSelectedCategory] = useState("movie");
   const [categoryData, setCategoryData] = useState([]);
-  const [loadingData, setLoadingData] = useState(true); // Add a loading state
 
   const [api, setApi] = useState(null);
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const categories = ["movie", "music", "product"];
 
@@ -54,7 +51,6 @@ export default function Home() {
     if (error) {
       // Handle error state
       console.error(error);
-      setLoadingData(false); // Set loading state to false as data loading is done
       return;
     }
 
@@ -66,8 +62,6 @@ export default function Home() {
     }));
 
     setCategoryData(dataOfCategory);
-
-    setLoadingData(false); // Set loading state to false as data loading is done
   }, [selectedYear, selectedCategory, docs, loading, error]);
 
   useEffect(() => {
@@ -75,41 +69,14 @@ export default function Home() {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
     api.on("select", () => {
       const newIndex = api.selectedScrollSnap();
-      setCurrent(newIndex + 1);
       setSelectedCategory(categories[newIndex % categories.length]);
     });
   }, [api, categories]);
 
   const handleYearChange = (year) => {
     setSelectedYear(year);
-  };
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleCarouselChange = (newIndex) => {
-    let newCategory = "movie";
-    switch (newIndex) {
-      case 0:
-        newCategory = "movie";
-        break;
-      case 1:
-        newCategory = "music";
-        break;
-      case 2:
-        newCategory = "product";
-        break;
-      default:
-        return; // 알려지지 않은 인덱스에 대해서는 아무 작업도 하지 않음
-    }
-
-    handleCategoryChange(newCategory); // 카테고리 변경 함수를 호출합니다.
-    console.log(newCategory);
   };
 
   return (
@@ -134,9 +101,15 @@ export default function Home() {
                 <Card>
                   <CardHeader className="flex flex-col items-center justify-center">
                     <CardTitle className="text-[1.1rem] lg:text-3xl">
-                      Justin&#39;s Favorite {selectedCategory} in {selectedYear}
+                      Justin&#39;s Favorite{" "}
+                      {selectedCategory.charAt(0).toUpperCase() +
+                        selectedCategory.slice(1)}
+                      s in {selectedYear}
                     </CardTitle>
-                    <CardDescription>Click for information</CardDescription>
+
+                    <CardDescription>
+                      Click for more information
+                    </CardDescription>
                   </CardHeader>
                   <Separator className="mb-2" />
                   <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2 pt-4">
