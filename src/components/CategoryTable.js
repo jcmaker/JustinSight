@@ -1,3 +1,10 @@
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "@clerk/nextjs";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../fbManager"; // Ensure this path is correct for your Firebase manager import.
+import { Button } from "@/components/ui/button";
+import { Trash2Icon } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -6,38 +13,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Trash2Icon } from "lucide-react";
-import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
-import { useAuth } from "@clerk/nextjs";
-import { deleteDoc } from "firebase/firestore";
-import { db } from "../../fbManager";
 
-function CategoryTable({ categoryData, loading }) {
-  const { userId } = useAuth(); // Correctly use the useAuth hook (assuming it's from Clerk).
-
-  async function deleteList(categoryId) {
-    if (!userId || !categoryId) return;
-
-    const toastId = toast.loading("Deleting...");
-
-    try {
-      async () => {
-        deleteDoc(doc(db, `years/${selectedYear}/${selectedCategory}`)).then(
-          () => {
-            toast.success("File Deleted Successfully", {
-              id: toastId,
-            });
-          }
-        );
-      };
-    } catch (error) {
-      toast.error(`Error Deleting File : ${error}`, {
-        id: toastId,
-      });
-    }
-  }
+function CategoryTable({ categoryData, selectedYear, selectedCategory }) {
+  const { userId } = useAuth(); // Assuming useAuth is correctly imported from Clerk.
 
   return (
     <Table id="left_list">
@@ -49,7 +27,7 @@ function CategoryTable({ categoryData, loading }) {
           <TableHead className="text-right">Delete</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody>s
         {categoryData && categoryData.length > 0 ? (
           categoryData.map((category) => (
             <TableRow key={category.id} className="p-0">
@@ -65,7 +43,19 @@ function CategoryTable({ categoryData, loading }) {
                 <Button
                   variant={"outline"}
                   className="hover:bg-red-500 w-fit h-fit"
-                  onClick={deleteList}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    if (!userId) return;
+                    const toastId = toast.loading("Deleting...");
+                    try {
+                      await deleteDoc(
+                        doc(db, "years", `${selectedYear}`, selectedCategory, category.id)
+                      );
+                      toast.success("File Deleted Successfully", { id: toastId });
+                    } catch (error) {
+                      toast.error(`Error Deleting File : ${error}`, { id: toastId });
+                    }
+                  }}
                 >
                   <Trash2Icon size={10} />
                 </Button>

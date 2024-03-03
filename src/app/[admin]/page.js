@@ -16,7 +16,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 function Page() {
   const router = useRouter(); // Correctly use the useRouter hook.
   const { userId } = useAuth(); // Correctly use the useAuth hook (assuming it's from Clerk).
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState(
+    new Date().getFullYear() - 1
+  );
   const [selectedCategory, setSelectedCategory] = useState("movie");
 
   const [categoryData, setCategoryData] = useState([]);
@@ -81,7 +83,11 @@ function Page() {
             <Skeleton className="h-[45px] w-[500px] rounded-xl" />
           </div>
         ) : (
-          <CategoryTable categoryData={categoryData} loading={loadingData} />
+          <CategoryTable
+            categoryData={categoryData}
+            selectedYear={selectedYear}
+            selectedCategory={selectedCategory}
+          />
         )}
         <div
           id="right_form"
