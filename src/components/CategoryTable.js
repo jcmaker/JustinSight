@@ -27,7 +27,7 @@ function CategoryTable({ categoryData, selectedYear, selectedCategory }) {
           <TableHead className="text-right">Delete</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>s
+      <TableBody>
         {categoryData && categoryData.length > 0 ? (
           categoryData.map((category) => (
             <TableRow key={category.id} className="p-0">
@@ -49,11 +49,21 @@ function CategoryTable({ categoryData, selectedYear, selectedCategory }) {
                     const toastId = toast.loading("Deleting...");
                     try {
                       await deleteDoc(
-                        doc(db, "years", `${selectedYear}`, selectedCategory, category.id)
+                        doc(
+                          db,
+                          "years",
+                          `${selectedYear}`,
+                          selectedCategory,
+                          category.id
+                        )
                       );
-                      toast.success("File Deleted Successfully", { id: toastId });
+                      toast.success("File Deleted Successfully", {
+                        id: toastId,
+                      });
                     } catch (error) {
-                      toast.error(`Error Deleting File : ${error}`, { id: toastId });
+                      toast.error(`Error Deleting File : ${error}`, {
+                        id: toastId,
+                      });
                     }
                   }}
                 >

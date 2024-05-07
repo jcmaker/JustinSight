@@ -120,7 +120,7 @@ export default function Home() {
                           className="flex flex-col items-center lg:m-2 hover:rounded-lg hover:cursor-pointer hover:text-blue-600"
                         >
                           <Link href={category.link} target="_blank">
-                            <h1 className="text-sm lg:text-lg font-semibold">
+                            <h1 className="truncate text-sm lg:text-lg font-semibold">
                               {category.title}
                             </h1>
                           </Link>
