@@ -1,4 +1,4 @@
-import { Gamepad2, Github, Instagram } from "lucide-react";
+import { Gamepad2, Github, Instagram, Youtube } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,8 +13,8 @@ function Footer() {
               JustinSight
             </h4>
             <p className="text-sm mt-0 mb-2 text-slate-400 text-center">
-              Movies that I enjoyed watching, songs that I enjoyed, and things
-              that I thought I bought well this year
+              Movies that I enjoyed watching, songs and books that I enjoyed,
+              and things that I thought I bought well this year
             </p>
             <div className="mt-6 lg:mb-0 mb-6">
               <Button className="text-4xl h-15 w-15 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">

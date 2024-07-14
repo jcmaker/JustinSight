@@ -24,6 +24,10 @@ const frameworks = [
     value: "product",
     label: "Product",
   },
+  {
+    value: "book",
+    label: "Book",
+  },
 ];
 
 export function CategoryPicker({ onCategoryChange }) {

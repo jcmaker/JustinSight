@@ -32,7 +32,7 @@ export default function Home() {
 
   const [api, setApi] = useState(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const categories = ["movie", "music", "product"];
+  const categories = ["movie", "music", "product", "book"];
 
   const [docs, loading, error] = useCollection(
     query(
@@ -95,7 +95,7 @@ export default function Home() {
         setApi={setApi}
       >
         <CarouselContent>
-          {Array.from({ length: 3 }).map((_, index) => (
+          {Array.from({ length: 4 }).map((_, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
                 <Card>
@@ -132,7 +132,7 @@ export default function Home() {
                     ) : (
                       <CardContent className="flex aspect-square items-center justify-center p-6">
                         <span className="text-xl font-semibold text-slate-500">
-                          2024 Not Ready
+                          {selectedYear} Not Posted
                         </span>
                       </CardContent>
                     )}
